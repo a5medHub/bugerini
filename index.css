@@ -2,6 +2,6 @@ body {
     margin: 0;
 } 
 .header {
-    background-image: url(./assets/images/background-burger.png);
+    background-image: url("./assets/images/background-burger.png");
     background-repeat: no-repeat;
 }
