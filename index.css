@@ -54,6 +54,21 @@ body {
     margin-left: auto;
     /* padding: 5px; */
 }
+.itemAdded{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    margin: auto;
+}
+.itemAdded >h5{
+    margin-left: auto;
+}
+.itemAdded >p{
+    margin: auto 1rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #8B8B8B;
+}
 hr {
     /* max-width: 80%; */
 }

@@ -16,7 +16,7 @@ function addToMenu(e){
             <div class="itemAdded">
                 <h3>${addItem.name}</h3>
                 <p>remove</p>
-                <h5>${addItem.price}</h5>
+                <h5>$${addItem.price}</h5>
             </div>
         </div>`
   
