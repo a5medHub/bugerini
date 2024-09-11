@@ -11,8 +11,14 @@ document.addEventListener("click", (event) => {event.target.dataset.icon?addToMe
 function addToMenu(e){
 
     const addItem = menuArray.filter(item=> item.id == e )[0]
-    console.log(addItem.name)
-    // return addItem
+    menuEl.innerHTML+= `
+        <div class="orders" id="${addItem.id}">
+            <div class="itemAdded">
+                <h3>${addItem.name}</h3>
+                <p>remove</p>
+                <h5>${addItem.price}</h5>
+            </div>
+        </div>`
   
 }
 
@@ -28,15 +34,16 @@ function getMenuItems() {
             </div>
             <button data-icon="${e.id}" id="add-button" class="icon">+</button>
          </div>
-         <hr> 
-         <div class="orders">${addItem}</div>`
-    }).join('')
+         <hr>`
+         }).join('')
     
     
 }
 
 function render() {
     menuEl.innerHTML = getMenuItems()
+
+    
 
 }
 render()
