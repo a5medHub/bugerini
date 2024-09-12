@@ -85,3 +85,15 @@ body {
 .payment {
     margin: 1.5rem 2rem;
 }
+.submitOrder {
+    display: flex;
+    padding: 1.2rem 35%;
+    margin: 1rem auto;
+    border-radius: 0.3rem;
+    border: none;
+    background-color: #16DB99;
+    color: #fff;
+    font-size: large;
+    font-weight: bold;
+
+}

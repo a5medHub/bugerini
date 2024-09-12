@@ -69,7 +69,8 @@ function totalPriceList(e){
     <div class='totalPriceList'>
         <h3>Total Price:</h3>
         <p>$${e}</p>
-    </div>`
+    </div>
+    <button class="submitOrder">Complete order</button>`
 }
 function getMenuItems() {
     return menuArray.map(e => {
