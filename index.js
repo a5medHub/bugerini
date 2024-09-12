@@ -44,6 +44,26 @@ function addToMenu(e, counter){
     //     // document.querySelector(".counter").innerHTML = `x${counter}`;
     // }
 }
+// function addToMenu(e, counter){
+//     if(counter<5 ){
+//         const addItem = menuArray.filter(item=> item.id == e )[0]  
+//         let theHtmlRender =`
+//             <div class="orders" id="${addItem.id}">
+            
+//                 <div class="itemAdded">
+//                     <h3>${addItem.name} <small class="${addItem.name}">x${counter}</small></h3>
+//                     <button class='delete' data-delete="${addItem.id}">remove</button>
+//                     <h5>$${addItem.price}</h5>
+                    
+//                 </div>
+//             </div>`
+//         paymentEl.innerHTML += theHtmlRender
+//             totalAmmount(addItem.price, addItem.id, addItem.name)
+//         }
+//     // else{
+//     //     // document.querySelector(".counter").innerHTML = `x${counter}`;
+//     // }
+// }
 
 
 // function removeItemFromOrder(e){
