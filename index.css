@@ -1,3 +1,99 @@
 body {
-    margin: 0;
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: roboto, sans-serif;
 } 
+.header {
+    background-image: url("./assets/images/background-burger.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+    padding: 10px;
+    padding-left: 5rem;
+
+}
+.header h1 {
+    margin-top: auto;
+}
+.menu {
+    padding: 0 2rem;
+}
+.item {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+}
+.item > p{
+    font-size: 50px;
+}
+.itemType{
+    flex-direction: column;
+    justify-content: space-around;
+}
+.name, .ingredients, .price {
+    padding-left: 2rem;
+}
+.name, .price {
+    font-weight: bold;
+}
+.ingredients {
+    color: #8B8B8B;
+}
+.icon {
+    color: #3C3C3C;
+    border: 1px solid #8B8B8B;
+    background-color: #fff;
+    border-radius: 100%;
+    padding: 0;
+    font-size: 1.5rem;
+    font-weight: 200;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin: auto 0;
+    margin-left: auto;
+    /* padding: 5px; */
+}
+.itemAdded{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+.itemAdded >h5{
+    margin-left: auto;
+    font-weight: 500;
+    /* font-size: 1rem; */
+}
+.itemAdded .delete{
+    border: none;
+    background-color: #fff;
+    margin: auto 1rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #8B8B8B;
+}
+.totalPriceList {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 0 2rem;
+}
+.hrPriceList {
+    border: 0.1rem solid #3C3C3C;
+    margin: 1rem 2rem;
+}
+.payment {
+    margin: 1.5rem 2rem;
+}
+.submitOrder {
+    display: flex;
+    padding: 1.2rem 35%;
+    margin: 1rem auto;
+    border-radius: 0.3rem;
+    border: none;
+    background-color: #16DB99;
+    color: #fff;
+    font-size: large;
+    font-weight: bold;
+
+}
