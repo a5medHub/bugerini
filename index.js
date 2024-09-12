@@ -90,7 +90,6 @@ function getMenuItems() {
 
 function render() {
     menuEl.innerHTML = getMenuItems()
-    // totalEl.innerHTML = 
 
 }
 render()
