@@ -8,33 +8,52 @@ const x = {pizzaCount:0, burgerCount:0, beerCount:0 }
 
 document.addEventListener("click", (event) => {
     if (event.target.dataset.icon) {
-        addToMenu(event.target.dataset.icon)
+        if(event.target.dataset.icon == 0){
+            x.pizzaCount+=1
+            addToMenu(event.target.dataset.icon,x.pizzaCount)
+        }else if(event.target.dataset.icon == 1){
+            x.burgerCount+=1
+            addToMenu(event.target.dataset.icon,x.burgerCount)
+        }else if(event.target.dataset.icon == 2){
+            x.beerCount+=1
+            addToMenu(event.target.dataset.icon,x.beerCount)
+        }
+        
     } else if (event.target.dataset.delete) {
         removeItemFromOrder(event.target.dataset.delete)
     }
 })
 
-function addToMenu(e){
-    const pizzaItem = x.pizzaCount
-    const addItem = menuArray.filter(item=> item.id == e )[0]
-    menuEl.innerHTML+= `
-        <div class="orders" id="${addItem.id}">
-        
-            <div class="itemAdded">
-                <h3>${addItem.name} <small>x${pizzaItem}</small></h3>
-                <button class='delete' data-delete="${addItem.id}">remove</button>
-                <h5>$${addItem.price}</h5>
-                
-            </div>
-        </div>`
-    totalAmmount(addItem.price, addItem.id, addItem.name)
-    removeItemFromOrder(addItem.id)
+function addToMenu(e, counter){
+    if(counter<5 ){
+        const addItem = menuArray.filter(item=> item.id == e )[0]  
+        let theHtmlRender =`
+            <div class="orders" id="${addItem.id}">
+            
+                <div class="itemAdded">
+                    <h3>${addItem.name} <small class="${addItem.name}">x${counter}</small></h3>
+                    <button class='delete' data-delete="${addItem.id}">remove</button>
+                    <h5>$${addItem.price}</h5>
+                    
+                </div>
+            </div>`
+        paymentEl.innerHTML += theHtmlRender
+            totalAmmount(addItem.price, addItem.id, addItem.name)
+        }
+    // else{
+    //     // document.querySelector(".counter").innerHTML = `x${counter}`;
+    // }
 }
 
-function removeItemFromOrder(e){
-    console.log("item is deleted", e)
 
-}
+// function removeItemFromOrder(e){
+//     if(e == 0){
+//         x.pizzaCount-=1
+//         totalAmmount(price-x.pizzaCount)
+//     }
+//     console.log("item is deleted", e)
+
+// }
 function totalAmmount(price, id, name) {
     allAmmount.push(price)
     let totalPrice = allAmmount.reduce(function(first, last){
@@ -71,14 +90,11 @@ function getMenuItems() {
          </div>
          <hr>`
          }).join('')
-    
-    
 }
 
 function render() {
     menuEl.innerHTML = getMenuItems()
-
-    
+    // totalEl.innerHTML = 
 
 }
 render()
