@@ -1,69 +1,89 @@
 import { menuArray } from "./data.js"
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
 const menuEl = document.getElementById("menu")
 const paymentEl = document.getElementById("payment")
 const totalEl = document.getElementById("total")
 const allAmmount = []
-const x = {pizzaCount:0, burgerCount:0, beerCount:0 }
-let theHtmlRender = []
+let totalPriceListCounter = 0
+// let theHtmlRender = []
+let priceOfId = {}
 
 document.addEventListener("click", (event) => {
     if (event.target.dataset.icon) {
-        if(event.target.dataset.icon == 0){
-            x.pizzaCount+=1
-            addToMenu(event.target.dataset.icon,x.pizzaCount)
-        }else if(event.target.dataset.icon == 1){
-            x.burgerCount+=1
-            addToMenu(event.target.dataset.icon,x.burgerCount)
-        }else if(event.target.dataset.icon == 2){
-            x.beerCount+=1
-            addToMenu(event.target.dataset.icon,x.beerCount)
-        }
-        
+        addToMenu(event.target.dataset.icon)
+       
     } else if (event.target.dataset.delete) {
         removeItemFromOrder(event.target.dataset.delete)
     }
 })
 
 function addToMenu(e, counter){
+    let id = uuidv4()
     const addItem = menuArray.filter(item=> item.id == e )[0] 
     let theHtmlRender =`
-            <div class="orders" id="${addItem.id}">
+            <div class="orders" id="${id}">
                 <div class="itemAdded">
                     <h3>${addItem.name} <!--<small class="${addItem.name}">x${counter}</small>--></h3>
-                    <button class='delete' data-delete="${addItem.id}">remove</button>
+                    <button class='delete' data-delete="${id}" >remove</button>
+
                     <h5>$${addItem.price}</h5>
                 </div>
             </div>`
-        paymentEl.innerHTML += theHtmlRender
-            totalAmmount(addItem.price, addItem.id, addItem.name)
+            priceOfId[id] = addItem.price
+            // console.log(id)
+            // console.log(priceOfId)
+            paymentEl.innerHTML += theHtmlRender
+            
+            totalAmmount(addItem.price, addItem.id, addItem.name, id)
+
+
     
 }
 
 
-// function removeItemFromOrder(e){
-//     if(e == 0){
-//         x.pizzaCount-=1
-//         totalAmmount(price-x.pizzaCount)
-//     }
-//     console.log("item is deleted", e)
+function removeItemFromOrder(id){
+    const order = document.getElementById(id)
+    totalPriceListCounter-=1
 
-// }
-function totalAmmount(price, id, name) {
+    // console.log(priceOfId)
+    // console.log(priceOfId[order.id])
+    // console.log(order.id)
+    const removeItemPriceFromList = Object.entries(priceOfId).forEach(function(e){
+        if(e[0] == order.id){
+        console.log("item found: ", order.id, "Price is: ", e[1])
+        console.log("all ammount before: ",allAmmount)
+        allAmmount.splice(e[1],1)
+        console.log("all ammount after: ",allAmmount)
+
+        }
+        // console.log(allAmmount)
+        
+    })
+
+    if(totalPriceListCounter>=1){
+        order.innerHTML = ''
+        
+    }else{
+        order.innerHTML = ''
+        totalEl.innerHTML = ''
+        priceOfId = {}
+        // allAmmount = []
+    }
+
+}
+function totalAmmount(price, id, name, removeId) {
+    // console.log("removeId: ",removeId)
     allAmmount.push(price)
     let totalPrice = allAmmount.reduce(function(first, last){
         return first+last
     })
     totalPriceList(totalPrice)
-    // console.log(total)
     // payment(totalPrice,allAmmount,price, id, name)
 }
 
-// function payment(totalPrice,allAmmount,price, id, name) {
-//     console.log(totalPrice,allAmmount,price, id, name)
-//     // totalPrice(e)
-// }
 function totalPriceList(e){
+    totalPriceListCounter+=1
     totalEl.innerHTML = `
     <hr class='hrPriceList'>
     <div class='totalPriceList'>
