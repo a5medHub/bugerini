@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 const menuEl = document.getElementById("menu")
 const paymentEl = document.getElementById("payment")
 const totalEl = document.getElementById("total")
-const allAmmount = []
+const allData = []
 let totalPriceListCounter = 0
 // let theHtmlRender = []
 let priceOfId = {}
@@ -35,7 +35,7 @@ function addToMenu(e, counter){
             // console.log(priceOfId)
             paymentEl.innerHTML += theHtmlRender
             
-            totalAmmount(addItem.price, addItem.id, addItem.name, id)
+            totalAmmount(id, addItem.price, addItem.name, addItem.id)
 
 
     
@@ -46,18 +46,21 @@ function removeItemFromOrder(id){
     const order = document.getElementById(id)
     totalPriceListCounter-=1
 
-    // console.log(priceOfId)
-    // console.log(priceOfId[order.id])
-    // console.log(order.id)
+    // console.log("priceOfId: ",priceOfId)
+    // console.log("priceOfId[order.id]",priceOfId[order.id])
+    // let x=priceOfId[order.id]
+    // console.log("order.id",order.id)
     const removeItemPriceFromList = Object.entries(priceOfId).forEach(function(e){
         if(e[0] == order.id){
         console.log("item found: ", order.id, "Price is: ", e[1])
-        console.log("all ammount before: ",allAmmount)
-        allAmmount.splice(e[1],1)
-        console.log("all ammount after: ",allAmmount)
+        // console.log("all ammount before: ",allData)
+        // console.log("total ammount remove: ",allData-x)
+        // allData.splice(e[1],1)
+        // console.log("all ammount after: ",allData)
 
+        // totalAmmount()
         }
-        // console.log(allAmmount)
+        // console.log(allData)
         
     })
 
@@ -68,27 +71,37 @@ function removeItemFromOrder(id){
         order.innerHTML = ''
         totalEl.innerHTML = ''
         priceOfId = {}
-        // allAmmount = []
     }
 
 }
-function totalAmmount(price, id, name, removeId) {
-    // console.log("removeId: ",removeId)
-    allAmmount.push(price)
-    let totalPrice = allAmmount.reduce(function(first, last){
+function totalAmmount(uid, price, name, id) {
+    let pair = [uid, price, name, id]
+    allData.push(pair)
+    console.log(allData)
+    const itemsPriceSum = allData.map(function(item){
+        return item[1]
+    })
+    console.log(itemsPriceSum)
+    let totalPrice = itemsPriceSum.reduce(function(first, last){
         return first+last
     })
     totalPriceList(totalPrice)
-    // payment(totalPrice,allAmmount,price, id, name)
+
+    // allData.push(price)
+    // let totalPrice = allData.reduce(function(first, last){
+    //     return first+last
+    // })
+    // totalPriceList(totalPrice)
+    // payment(totalPrice,allData,price, id, name)
 }
 
-function totalPriceList(e){
+function totalPriceList(itemPrice){
     totalPriceListCounter+=1
     totalEl.innerHTML = `
     <hr class='hrPriceList'>
     <div class='totalPriceList'>
         <h3>Total Price:</h3>
-        <p>$${e}</p>
+        <p>$${itemPrice}</p>
     </div>
     <button class="submitOrder">Complete order</button>`
 }
