@@ -81,12 +81,12 @@ function totalAmmount(uid, price, name, id) {
     const itemsPriceSum = allData.map(function(item){
         return item[1]
     })
-    console.log(itemsPriceSum)
-    let totalPrice = itemsPriceSum.reduce(function(first, last){
+    .reduce(function(first, last){
         return first+last
     })
-    totalPriceList(totalPrice)
-
+    totalPriceList(itemsPriceSum)
+    
+    // console.log(itemsPriceSum)
     // allData.push(price)
     // let totalPrice = allData.reduce(function(first, last){
     //     return first+last
