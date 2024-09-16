@@ -75,7 +75,7 @@ function removeItemFromOrder(id){
 
 }
 function totalAmmount(uid, price, name, id) {
-    let pair = [uid, price, name, id]
+    let pair = [uid, price]
     allData.push(pair)
     console.log(allData)
     const itemsPriceSum = allData.map(function(item){
