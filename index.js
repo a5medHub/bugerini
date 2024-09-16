@@ -8,6 +8,8 @@ const allData = []
 let totalPriceListCounter = 0
 // let theHtmlRender = []
 let priceOfId = {}
+const testBtn = document.getElementById("test")
+
 
 document.addEventListener("click", (event) => {
     if (event.target.dataset.icon) {
@@ -41,6 +43,21 @@ function addToMenu(e, counter){
     
 }
 
+testBtn.addEventListener("click", (event) => {
+    // console.log(allData)
+    let numberX = Math.floor(Math.random(allData)*allData.length)
+    // console.log(numberX)
+    // console.log(allData[0])
+    const randomData = allData.map((e)=>{
+        return e[0]
+    })
+    console.log("random number to value",numberX,randomData[numberX])
+    // allData.forEach((e)=>{
+        
+    //         console.log(e[numberX])
+    //     // console.log(e[0])
+    // })
+})
 
 function removeItemFromOrder(id){
     const order = document.getElementById(id)
