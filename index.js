@@ -43,13 +43,13 @@ function addToMenu(e, counter) {
     let id = uuidv4()
     const addItem = menuArray.filter(item => item.id == e)[0]
     let theHtmlRender = `
-            <div class="orders" id="${id}">
-                <div class="itemAdded">
-                    <h3>${addItem.name} <!--<small class="${addItem.name}">x${counter}</small>--></h3>
-                    <button class='delete' data-delete="${id}" >remove</button>
-                    <h5>$${addItem.price}</h5>
-                </div>
-            </div>`
+        <div class="orders" id="${id}">
+            <div class="itemAdded">
+                <h3>${addItem.name} <!--<small class="${addItem.name}">x${counter}</small>--></h3>
+                <button class='delete' data-delete="${id}" >remove</button>
+                <h5>$${addItem.price}</h5>
+            </div>
+        </div>`
     priceOfId[id] = addItem.price
     paymentEl.innerHTML += theHtmlRender
     totalAmmount(id, addItem.price, addItem.name, addItem.id)
@@ -70,12 +70,12 @@ function totalAmmount(uid, price, name, id) {
 function totalPriceList(itemPrice) {
     totalPriceListCounter += 1
     totalEl.innerHTML = `
-    <hr class='hrPriceList'>
-    <div class='totalPriceList'>
-        <h3>Total Price:</h3>
-        <p>$${itemPrice}</p>
-    </div>
-    <button class="submitOrder">Complete order</button>`
+        <hr class='hrPriceList'>
+        <div class='totalPriceList'>
+            <h3>Total Price:</h3>
+            <p>$${itemPrice}</p>
+        </div>
+        <button class="submitOrder">Complete order</button>`
 }
 
 function getMenuItems() {
@@ -96,6 +96,6 @@ function getMenuItems() {
 
 function render() {
     menuEl.innerHTML = getMenuItems()
-
 }
+
 render()
