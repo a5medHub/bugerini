@@ -8,7 +8,6 @@ import {
 const menuEl = document.getElementById("menu")
 const paymentEl = document.getElementById("payment")
 const totalEl = document.getElementById("total")
-const testBtn = document.getElementById("test")
 const allData = []
 const priceOfId = {}
 let totalPriceListCounter = 0
@@ -22,32 +21,27 @@ document.addEventListener("click", (event) => {
     }
 })
 
-// testBtn.addEventListener("click", (event) => {
-//     let numberX = Math.floor(Math.random(allData) * allData.length)
-//     const randomData = allData.map((e) => {
-//         return e[0]
-//     })
-//     console.log("random number to value", numberX, randomData[numberX])
-// })
-
 function removeItemFromOrder(id) {
     const order = document.getElementById(id)
-    totalPriceListCounter -= 1
+    totalPriceListCounter -= 2
+    
     const removeItemPriceFromList = Object.entries(priceOfId).forEach(function (e) {
         if (e[0] === order.id) {
             console.log("item found: ", order.id, "Price is: ", e[1])
             delete priceOfId[e[0]]
             console.log("priceOfId",priceOfId)
+            totalAmmount(e[0],-e[1])
         }
     })
-    if (totalPriceListCounter >= 1) {
+    if (totalPriceListCounter > 0) {
         order.innerHTML = ''
     } else {
         order.innerHTML = ''
         totalEl.innerHTML = ''
-        priceOfId = {}
-        window.location.reload() // this line is to be removed
+        // priceOfId = {}
+        // window.location.reload() // this line is to be removed
     }
+    console.log(totalPriceListCounter)
 }
 
 function addToMenu(e, counter) {
