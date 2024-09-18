@@ -44,7 +44,7 @@ function removeItemFromOrder(id) {
         order.innerHTML = ''
         totalEl.innerHTML = ''
         priceOfId = {}
-        window.location.reload()
+        window.location.reload() // this line is to be removed
     }
 }
 
