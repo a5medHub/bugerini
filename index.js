@@ -24,13 +24,11 @@ document.addEventListener("click", (event) => {
 function removeItemFromOrder(id) {
     const order = document.getElementById(id)
     totalPriceListCounter -= 2
-    
-    const removeItemPriceFromList = Object.entries(priceOfId).forEach(function (e) {
+
+    Object.entries(priceOfId).forEach(function (e) {
         if (e[0] === order.id) {
-            console.log("item found: ", order.id, "Price is: ", e[1])
             delete priceOfId[e[0]]
-            console.log("priceOfId",priceOfId)
-            totalAmmount(e[0],-e[1])
+            totalAmmount(e[0], -e[1])
         }
     })
     if (totalPriceListCounter > 0) {
@@ -38,10 +36,7 @@ function removeItemFromOrder(id) {
     } else {
         order.innerHTML = ''
         totalEl.innerHTML = ''
-        // priceOfId = {}
-        // window.location.reload() // this line is to be removed
     }
-    console.log(totalPriceListCounter)
 }
 
 function addToMenu(e, counter) {
@@ -63,7 +58,6 @@ function addToMenu(e, counter) {
 function totalAmmount(uid, price, name, id) {
     let pair = [uid, price]
     allData.push(pair)
-    console.log(allData)
     const itemsPriceSum = allData.map(function (item) {
             return item[1]
         })
@@ -71,14 +65,6 @@ function totalAmmount(uid, price, name, id) {
             return first + last
         })
     totalPriceList(itemsPriceSum)
-
-    // console.log(itemsPriceSum)
-    // allData.push(price)
-    // let totalPrice = allData.reduce(function(first, last){
-    //     return first+last
-    // })
-    // totalPriceList(totalPrice)
-    // payment(totalPrice,allData,price, id, name)
 }
 
 function totalPriceList(itemPrice) {
