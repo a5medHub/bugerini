@@ -1,80 +1,86 @@
-import { menuArray } from "./data.js"
+import {
+    menuArray
+} from "./data.js"
+import {
+    v4 as uuidv4
+} from 'https://jspm.dev/uuid';
 
 const menuEl = document.getElementById("menu")
 const paymentEl = document.getElementById("payment")
 const totalEl = document.getElementById("total")
-const allAmmount = []
-const x = {pizzaCount:0, burgerCount:0, beerCount:0 }
-let theHtmlRender = []
+const allData = []
+const priceOfId = {}
+let totalPriceListCounter = 0
 
 document.addEventListener("click", (event) => {
     if (event.target.dataset.icon) {
-        if(event.target.dataset.icon == 0){
-            x.pizzaCount+=1
-            addToMenu(event.target.dataset.icon,x.pizzaCount)
-        }else if(event.target.dataset.icon == 1){
-            x.burgerCount+=1
-            addToMenu(event.target.dataset.icon,x.burgerCount)
-        }else if(event.target.dataset.icon == 2){
-            x.beerCount+=1
-            addToMenu(event.target.dataset.icon,x.beerCount)
-        }
-        
+        addToMenu(event.target.dataset.icon)
+
     } else if (event.target.dataset.delete) {
         removeItemFromOrder(event.target.dataset.delete)
     }
 })
 
-function addToMenu(e, counter){
-    const addItem = menuArray.filter(item=> item.id == e )[0] 
-    let theHtmlRender =`
-            <div class="orders" id="${addItem.id}">
+function removeItemFromOrder(id) {
+    const order = document.getElementById(id)
+    totalPriceListCounter -= 2
+
+    Object.entries(priceOfId).forEach(function (e) {
+        if (e[0] === order.id) {
+            delete priceOfId[e[0]]
+            totalAmmount(e[0], -e[1])
+        }
+    })
+    if (totalPriceListCounter > 0) {
+        order.innerHTML = ''
+    } else {
+        order.innerHTML = ''
+        totalEl.innerHTML = ''
+    }
+}
+
+function addToMenu(e, counter) {
+    let id = uuidv4()
+    const addItem = menuArray.filter(item => item.id == e)[0]
+    let theHtmlRender = `
+            <div class="orders" id="${id}">
                 <div class="itemAdded">
                     <h3>${addItem.name} <!--<small class="${addItem.name}">x${counter}</small>--></h3>
-                    <button class='delete' data-delete="${addItem.id}">remove</button>
+                    <button class='delete' data-delete="${id}" >remove</button>
                     <h5>$${addItem.price}</h5>
                 </div>
             </div>`
-        paymentEl.innerHTML += theHtmlRender
-            totalAmmount(addItem.price, addItem.id, addItem.name)
-    
+    priceOfId[id] = addItem.price
+    paymentEl.innerHTML += theHtmlRender
+    totalAmmount(id, addItem.price, addItem.name, addItem.id)
 }
 
-
-// function removeItemFromOrder(e){
-//     if(e == 0){
-//         x.pizzaCount-=1
-//         totalAmmount(price-x.pizzaCount)
-//     }
-//     console.log("item is deleted", e)
-
-// }
-function totalAmmount(price, id, name) {
-    allAmmount.push(price)
-    let totalPrice = allAmmount.reduce(function(first, last){
-        return first+last
-    })
-    totalPriceList(totalPrice)
-    // console.log(total)
-    // payment(totalPrice,allAmmount,price, id, name)
+function totalAmmount(uid, price, name, id) {
+    let pair = [uid, price]
+    allData.push(pair)
+    const itemsPriceSum = allData.map(function (item) {
+            return item[1]
+        })
+        .reduce(function (first, last) {
+            return first + last
+        })
+    totalPriceList(itemsPriceSum)
 }
 
-// function payment(totalPrice,allAmmount,price, id, name) {
-//     console.log(totalPrice,allAmmount,price, id, name)
-//     // totalPrice(e)
-// }
-function totalPriceList(e){
+function totalPriceList(itemPrice) {
+    totalPriceListCounter += 1
     totalEl.innerHTML = `
     <hr class='hrPriceList'>
     <div class='totalPriceList'>
         <h3>Total Price:</h3>
-        <p>$${e}</p>
+        <p>$${itemPrice}</p>
     </div>
     <button class="submitOrder">Complete order</button>`
 }
+
 function getMenuItems() {
     return menuArray.map(e => {
-        return`
+        return `
          <div class="item">
             <p>${e.emoji}</p>
             <div class="itemType">
@@ -85,7 +91,7 @@ function getMenuItems() {
             <button data-icon="${e.id}" id="add-button" class="icon">+</button>
          </div>
          <hr>`
-         }).join('')
+    }).join('')
 }
 
 function render() {
