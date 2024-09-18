@@ -22,20 +22,22 @@ document.addEventListener("click", (event) => {
     }
 })
 
-testBtn.addEventListener("click", (event) => {
-    let numberX = Math.floor(Math.random(allData) * allData.length)
-    const randomData = allData.map((e) => {
-        return e[0]
-    })
-    console.log("random number to value", numberX, randomData[numberX])
-})
+// testBtn.addEventListener("click", (event) => {
+//     let numberX = Math.floor(Math.random(allData) * allData.length)
+//     const randomData = allData.map((e) => {
+//         return e[0]
+//     })
+//     console.log("random number to value", numberX, randomData[numberX])
+// })
 
 function removeItemFromOrder(id) {
     const order = document.getElementById(id)
     totalPriceListCounter -= 1
     const removeItemPriceFromList = Object.entries(priceOfId).forEach(function (e) {
-        if (e[0] == order.id) {
+        if (e[0] === order.id) {
             console.log("item found: ", order.id, "Price is: ", e[1])
+            delete priceOfId[e[0]]
+            console.log("priceOfId",priceOfId)
         }
     })
     if (totalPriceListCounter >= 1) {
