@@ -17,22 +17,27 @@
     
 </head>
 <body>
-    <header class="header">
+    <header class="header mainPage">
         <h1>jimmy's Diner</h1>
         <h2>The best burger in town.</h2>
     </header>
-    <section>
-        <div class="menu" id="menu">
-            
-            <!-- <div class="items"></div> -->
-        </div>
+    <section class="mainPage">
+        <div class="menu" id="menu"></div>
     </section>
-    <section>
-        <div class="" id=""></div>
+    <section class="mainPage">
         <div class="payment" id="payment"></div>
-    </section>
-    <section>
         <div class="total" id="total"></div>
+    </section>
+    <section class="formPage">
+        <div class="form visible">
+            <h2>Enter card details</h2>
+            <form action="index.html" method="get">
+                <input type="text" name="name" id="name" class="cardDetail" placeholder="Enter your name">
+                <input type="text" name="number" id="number" class="cardDetail" placeholder="Enter card number">
+                <input type="text" name="cvv" id="cvv" class="cardDetail" placeholder="Enter CVV">
+                <button type="submit" class="submit">Pay</button>
+            </form>
+        </div>
     </section>
     <script type="module" src="./index.js"></script>
 </body>
