@@ -4,6 +4,11 @@ body {
     font-family: roboto, sans-serif;
 }
 
+.top {
+    top: 0;
+    position: absolute;
+}
+
 .mainPage {
     position: relative;
     z-index: 1;
@@ -141,6 +146,18 @@ body {
     font-size: large;
     font-weight: bold;
 
+}
+
+.completedOrder {
+    display: flex;
+    padding: 1.2rem;
+    margin: 1.5rem auto;
+    border-radius: 0.3rem;
+    border: none;
+    background-color: #ecfdf5;
+    color: #23735c;
+    font-size: large;
+    font-weight: bold;
 }
 
 .form {

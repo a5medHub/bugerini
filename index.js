@@ -83,14 +83,21 @@ function totalPriceList(itemPrice) {
     submitOrderButton.addEventListener('click', () => {
         pay.style.visibility = "visible"
         document.body.style.pointerEvents = "none"
+        document.querySelector(".top").scrollIntoView({ // to scroll to the top, class top is in the header
+            behavior: "smooth" // This will make the scroll smooth, you can remove it if you don't want it
+        });
     })
 }
 
 paymentForm.addEventListener('submit', (event) => {
     event.preventDefault()
     const name = paymentForm.name.value
-    const number = paymentForm.number.value
-    const cvv = paymentForm.cvv.value
+    // const number = paymentForm.number.value
+    // const cvv = paymentForm.cvv.value
+    pay.style.visibility = "hidden"
+    paymentEl.innerHTML = ``
+    totalEl.innerHTML = `<button class="completedOrder">Thanks, ${name.toUpperCase()}! Your order is on the way!</button>`
+    setTimeout(()=> window.location.reload(),5000)
 })
 
 function getMenuItems() {
