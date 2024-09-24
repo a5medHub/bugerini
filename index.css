@@ -13,9 +13,9 @@ body {
     position: absolute;
     z-index: 10;
     text-align: center;
-    top: 30%;
-    left: 30%; 
-    margin: auto;
+    top: 10rem;
+    left: auto; 
+    margin-left: 6rem;
     max-width: 20rem;
     pointer-events: auto;
     visibility: hidden;
