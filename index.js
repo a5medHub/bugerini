@@ -5,12 +5,15 @@ import {
     v4 as uuidv4
 } from 'https://jspm.dev/uuid';
 
-const menuEl = document.getElementById("menu")
-const paymentEl = document.getElementById("payment")
-const totalEl = document.getElementById("total")
+const menuEl = document.querySelector("#menu")
+const paymentEl = document.querySelector("#payment")
+const totalEl = document.querySelector("#total")
+const pay = document.querySelector(".pay")
+const paymentForm = document.querySelector("#paymentForm")
 const allData = []
 const priceOfId = {}
 let totalPriceListCounter = 0
+
 
 document.addEventListener("click", (event) => {
     if (event.target.dataset.icon) {
@@ -43,13 +46,13 @@ function addToMenu(e, counter) {
     let id = uuidv4()
     const addItem = menuArray.filter(item => item.id == e)[0]
     let theHtmlRender = `
-            <div class="orders" id="${id}">
-                <div class="itemAdded">
-                    <h3>${addItem.name} <!--<small class="${addItem.name}">x${counter}</small>--></h3>
-                    <button class='delete' data-delete="${id}" >remove</button>
-                    <h5>$${addItem.price}</h5>
-                </div>
-            </div>`
+        <div class="orders" id="${id}">
+            <div class="itemAdded">
+                <h3>${addItem.name} <!--<small class="${addItem.name}">x${counter}</small>--></h3>
+                <button class='delete' data-delete="${id}" >remove</button>
+                <h5>$${addItem.price}</h5>
+            </div>
+        </div>`
     priceOfId[id] = addItem.price
     paymentEl.innerHTML += theHtmlRender
     totalAmmount(id, addItem.price, addItem.name, addItem.id)
@@ -70,13 +73,25 @@ function totalAmmount(uid, price, name, id) {
 function totalPriceList(itemPrice) {
     totalPriceListCounter += 1
     totalEl.innerHTML = `
-    <hr class='hrPriceList'>
-    <div class='totalPriceList'>
-        <h3>Total Price:</h3>
-        <p>$${itemPrice}</p>
-    </div>
-    <button class="submitOrder">Complete order</button>`
+        <hr class='hrPriceList'>
+        <div class='totalPriceList'>
+            <h3>Total Price:</h3>
+            <p>$${itemPrice}</p>
+        </div>
+        <button id="submitOrderButton" class="submitOrder">Complete order</button>`
+    const submitOrderButton = document.getElementById("submitOrderButton")
+    submitOrderButton.addEventListener('click', () => {
+        pay.style.visibility = "visible"
+        document.body.style.pointerEvents = "none"
+    })
 }
+
+paymentForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const name = paymentForm.name.value
+    const number = paymentForm.number.value
+    const cvv = paymentForm.cvv.value
+})
 
 function getMenuItems() {
     return menuArray.map(e => {
@@ -96,6 +111,6 @@ function getMenuItems() {
 
 function render() {
     menuEl.innerHTML = getMenuItems()
-
 }
+
 render()

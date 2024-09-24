@@ -13,26 +13,35 @@
 
     <!-- My Styling -->
     <link rel="stylesheet" href="./index.css">
+    <link rel="icon" href="./assets/images/burger-solid.svg">
     <title>Burgerini</title>
     
 </head>
 <body>
-    <header class="header">
+    <header class="header mainPage">
         <h1>jimmy's Diner</h1>
         <h2>The best burger in town.</h2>
     </header>
-    <section>
-        <div class="menu" id="menu">
-            
-            <!-- <div class="items"></div> -->
-        </div>
+    <section class="mainPage">
+        <div class="menu" id="menu"></div>
     </section>
-    <section>
-        <div class="" id=""></div>
+    <section class="mainPage">
         <div class="payment" id="payment"></div>
-    </section>
-    <section>
         <div class="total" id="total"></div>
+<<<<<<< HEAD
+=======
+    </section>
+    <section class="pay" id="pay">
+        <div class="formPage">
+            <h2>Enter card details</h2>
+            <form action="index.html" method="get" id="paymentForm">
+                <input type="text" name="name" id="name" class="cardDetail" placeholder="Enter your name" required>
+                <input type="text" name="number" id="number" class="cardDetail" placeholder="Enter card number" required>
+                <input type="text" name="cvv" id="cvv" class="cardDetail" placeholder="Enter CVV" required>
+                <button type="submit" class="submit">Pay</button>
+            </form>
+        </div>
+>>>>>>> dev
     </section>
     <script type="module" src="./index.js"></script>
 </body>
