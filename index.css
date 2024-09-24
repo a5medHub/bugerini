@@ -2,33 +2,40 @@ body {
     max-width: 500px;
     margin: 0 auto;
     font-family: roboto, sans-serif;
-    /* pointer-events: none; */
-    /* z-index: 1; */
-} 
+}
+
+.top {
+    top: 0;
+    position: absolute;
+}
+
 .mainPage {
     position: relative;
     z-index: 1;
 }
+
 .pay {
     position: absolute;
     z-index: 10;
     text-align: center;
     top: 10rem;
-    left: auto; 
+    left: auto;
     margin-left: 6rem;
     max-width: 20rem;
     pointer-events: auto;
     visibility: hidden;
 }
+
 .formPage {
     display: flex;
     flex-direction: column;
     background-color: #FFF;
     border: 1PX solid #8B8B8B;
     border-radius: 0.2rem;
-    box-shadow: 0rem 0rem 5rem  #3C3C3C;
+    box-shadow: 0rem 0rem 5rem #3C3C3C;
 
 }
+
 .header {
     background-image: url("./assets/images/background-burger.png");
     background-repeat: no-repeat;
@@ -39,33 +46,44 @@ body {
     padding-left: 5rem;
 
 }
+
 .header h1 {
     margin-top: auto;
 }
+
 .menu {
     padding: 0 2rem;
 }
+
 .item {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-evenly; */
 }
-.item > p{
+
+.item>p {
     font-size: 50px;
 }
-.itemType{
+
+.itemType {
     flex-direction: column;
     justify-content: space-around;
 }
-.name, .ingredients, .price {
+
+.name,
+.ingredients,
+.price {
     padding-left: 2rem;
 }
-.name, .price {
+
+.name,
+.price {
     font-weight: bold;
 }
+
 .ingredients {
     color: #8B8B8B;
 }
+
 .icon {
     color: #3C3C3C;
     border: 1px solid #8B8B8B;
@@ -78,19 +96,20 @@ body {
     min-width: 2.5rem;
     margin: auto 0;
     margin-left: auto;
-    /* padding: 5px; */
 }
-.itemAdded{
+
+.itemAdded {
     display: flex;
     flex-direction: row;
     margin: auto;
 }
-.itemAdded >h5{
+
+.itemAdded>h5 {
     margin-left: auto;
     font-weight: 500;
-    /* font-size: 1rem; */
 }
-.itemAdded .delete{
+
+.itemAdded .delete {
     border: none;
     background-color: #fff;
     margin: auto 1rem;
@@ -98,20 +117,25 @@ body {
     font-weight: 400;
     color: #8B8B8B;
 }
+
 .totalPriceList {
     display: flex;
     justify-content: space-between;
     margin: auto;
     padding: 0 2rem;
 }
+
 .hrPriceList {
     border: 0.1rem solid #3C3C3C;
     margin: 1rem 2rem;
 }
+
 .payment {
     margin: 1.5rem 2rem;
 }
-.submitOrder, .submit {
+
+.submitOrder,
+.submit {
     display: flex;
     padding: 1.2rem 35%;
     margin: 1rem auto;
@@ -123,20 +147,33 @@ body {
     font-weight: bold;
 
 }
+
+.completedOrder {
+    display: flex;
+    padding: 1.2rem;
+    margin: 1.5rem auto;
+    border-radius: 0.3rem;
+    border: none;
+    background-color: #ecfdf5;
+    color: #23735c;
+    font-size: large;
+    font-weight: bold;
+}
+
 .form {
     text-align: center;
     position: absolute;
     z-index: 2;
 }
-.form form{
+
+.form form {
     display: flex;
     flex-direction: column;
 }
+
 .cardDetail {
     border: 0.01rem solid #757575;
     border-radius: 0.2rem;
     margin: 0.5rem auto;
     padding: 1rem;
-    
-
 }
