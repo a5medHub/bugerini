@@ -9,6 +9,7 @@ const menuEl = document.querySelector("#menu")
 const paymentEl = document.querySelector("#payment")
 const totalEl = document.querySelector("#total")
 const pay = document.querySelector(".pay")
+const paymentForm = document.querySelector("#paymentForm")
 const allData = []
 const priceOfId = {}
 let totalPriceListCounter = 0
@@ -82,6 +83,7 @@ function totalPriceList(itemPrice) {
     submitOrderButton.addEventListener('click', ()=> {
         pay.style.visibility="visible"
         document.body.style.pointerEvents="none"
+        
     })
     
 }
