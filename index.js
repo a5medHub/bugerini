@@ -80,14 +80,13 @@ function totalPriceList(itemPrice) {
         </div>
         <button id="submitOrderButton" class="submitOrder">Complete order</button>`
     const submitOrderButton = document.getElementById("submitOrderButton")
-    submitOrderButton.addEventListener('click', ()=> {
-        pay.style.visibility="visible"
-        document.body.style.pointerEvents="none"
-        
+    submitOrderButton.addEventListener('click', () => {
+        pay.style.visibility = "visible"
+        document.body.style.pointerEvents = "none"
     })
-    
 }
-paymentForm.addEventListener('submit', (event)=>{
+
+paymentForm.addEventListener('submit', (event) => {
     event.preventDefault()
     const name = paymentForm.name.value
     const number = paymentForm.number.value
