@@ -87,6 +87,9 @@ function totalPriceList(itemPrice) {
     })
     
 }
+paymentForm.addEventListener('submit', (event)=>{
+    event.preventDefault()
+})
 
 function getMenuItems() {
     return menuArray.map(e => {
