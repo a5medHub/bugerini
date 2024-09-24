@@ -89,6 +89,9 @@ function totalPriceList(itemPrice) {
 }
 paymentForm.addEventListener('submit', (event)=>{
     event.preventDefault()
+    const name = paymentForm.name.value
+    const number = paymentForm.number.value
+    const cvv = paymentForm.cvv.value
 })
 
 function getMenuItems() {
