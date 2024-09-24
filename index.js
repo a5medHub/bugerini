@@ -5,12 +5,14 @@ import {
     v4 as uuidv4
 } from 'https://jspm.dev/uuid';
 
-const menuEl = document.getElementById("menu")
-const paymentEl = document.getElementById("payment")
-const totalEl = document.getElementById("total")
+const menuEl = document.querySelector("#menu")
+const paymentEl = document.querySelector("#payment")
+const totalEl = document.querySelector("#total")
+const pay = document.querySelector(".pay")
 const allData = []
 const priceOfId = {}
 let totalPriceListCounter = 0
+
 
 document.addEventListener("click", (event) => {
     if (event.target.dataset.icon) {
@@ -75,7 +77,13 @@ function totalPriceList(itemPrice) {
             <h3>Total Price:</h3>
             <p>$${itemPrice}</p>
         </div>
-        <button class="submitOrder">Complete order</button>`
+        <button id="submitOrderButton" class="submitOrder">Complete order</button>`
+    const submitOrderButton = document.getElementById("submitOrderButton")
+    submitOrderButton.addEventListener('click', ()=> {
+        pay.style.visibility="visible"
+        document.body.style.pointerEvents="none"
+    })
+    
 }
 
 function getMenuItems() {
